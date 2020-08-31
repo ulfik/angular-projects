@@ -1,0 +1,19 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+
+}
+mat-radio-button {
+  margin-right: 10px;
+}
+mat-form-field,
+mat-radio-group {
+  margin-bottom: 15px;
+}
+.tooltipContainer {
+  width: fit-content;
+}
+button {
+  margin-bottom: 20px;
+}

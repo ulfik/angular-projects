@@ -1,0 +1,48 @@
+<form class="form" [formGroup]="listForm" (ngSubmit)="onSubmit()">
+  <h2 mat-dialog-title>Do you want edit this item?</h2>
+  <mat-form-field>
+    <input matInput required formControlName="name" [pattern]="namePattern" />
+    <mat-label>name</mat-label>
+    <mat-error *ngIf="!listForm.get('name').valid">enter valid name</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput required type="number" formControlName="age" />
+    <mat-label>age</mat-label>
+    <mat-error *ngIf="!listForm.get('age').valid"
+      >you should enter your age properly</mat-error
+    >
+  </mat-form-field>
+
+  <mat-radio-group required formControlName="gender">
+    <mat-radio-button value="male" [checked]="true">male</mat-radio-button>
+    <mat-radio-button value="female">female</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field>
+    <input matInput formControlName="quote" />
+    <mat-label>quote</mat-label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="img" />
+    <mat-label>image url</mat-label>
+  </mat-form-field>
+  <mat-dialog-actions
+    class="tooltipContainer"
+    matTooltip="enter correct data before saving"
+    matTooltipPosition="right"
+    [matTooltipDisabled]="listForm.status === 'VALID'"
+  >
+    <button mat-raised-button color="primary" mat-dialog-close>nope</button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="accent"
+      [disabled]="listForm.status !== 'VALID' || !listForm.dirty"
+      [mat-dialog-close]="listForm.value"
+    >
+      save
+    </button>
+  </mat-dialog-actions>
+</form>

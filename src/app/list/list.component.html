@@ -1,0 +1,20 @@
+<app-list-form (createdElement)="onListElementAdded($event)"></app-list-form>
+<div class="filter">
+  <button mat-button [matMenuTriggerFor]="menu">
+    Filter <mat-icon color="primary">wc</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="filterGender('male')"> <mat-icon color="primary">person</mat-icon>male</button>
+    <button mat-menu-item (click)="filterGender('female')"> <mat-icon color="accent">person</mat-icon>female</button>
+    <button mat-menu-item (click)="filterGender(null)"> <mat-icon>people</mat-icon>show all</button>
+  </mat-menu>
+</div>
+
+<h1 *ngIf="!listElements.length">nothing left you moron!</h1>
+<app-list-element
+  *ngFor="
+    let ListElement of listElements | arrayOfObjectsFilter: 'gender':filterBy
+  "
+  [element]="ListElement"
+>
+</app-list-element>

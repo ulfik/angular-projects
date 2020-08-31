@@ -1,0 +1,47 @@
+<div class="withModification">
+  <div [class]="getBorderColor()" class="element">
+    <div class="buttonContainer">
+      <button
+        color="primary"
+        mat-mini-fab
+        aria-label="with a menu icon"
+        class="button"
+        matTooltip="edit card"
+        matTooltipPosition="left"
+        (click)="openEditModal(element)"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <button
+        class="button"
+        color="accent"
+        mat-mini-fab
+        aria-label="with a delete icon"
+        (click)="openDeleteModal(element.id, element.name)"
+        matTooltip="delete card"
+        matTooltipPosition="left"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <img
+      *ngIf="element.img; else defaultEskel"
+      [src]="element.img"
+      height="100"
+      width="100"
+    />
+    <ng-template #defaultEskel
+      ><img
+        src="https://66.media.tumblr.com/a6ad60f3b7055c673e3811aadc3a242f/27db8c6f7c7fd97b-4c/s640x960/99c84e44ef84f5a578a59f9bfbb77ed2c9131d5e.png"
+        height="100"
+        width="100"
+    /></ng-template>
+    <div>
+      <p>name: {{ element.name }}</p>
+      <p>age: {{ element.age }} years old</p>
+      <p *ngIf="element.quote; else nothingToSay">{{ element.quote }}</p>
+      <ng-template #nothingToSay><p>nothing to say</p></ng-template>
+    </div>
+    <p class="edited" *ngIf="element.edited">edited: {{ element.edited | date:'medium'}}</p>
+  </div>
+</div>
